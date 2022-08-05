@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Typewriter Effect</title>
+	</head>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		body {
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 30px;
+			background-color: #ccc;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		.contents {
+			display: flex;
+			gap: 15px;
+			flex-wrap: wrap;
+		}
+		input {
+			padding: 7px 15px;
+			font-size: 22px;
+			border: 1px solid #b8b8b8;
+			border-radius: 3px 3px 0 0;
+		}
+		input:focus {outline: none;}
+		p {
+			font-size: 20px;
+    	color: red;
+		}
+		button {
+			padding: 0 20px;
+			border: 1px solid #000;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+	</style>
+	<body>
+		<h1>Type Writer</h1>
+		<div class="contents">
+			<input type="text" placeholder="Enter any text...">
+			<button class="evaluate">Evaluate</button>
+		</div>
+		<p></p>
+		
+		<script src="file.js"></script>
+	</body>
+</html>
