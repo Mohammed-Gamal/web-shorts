@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input</title>
+    <style>
+			body {
+				min-height: 2000px;
+				background-color: #ddd;
+			}
+			.scroll-progress {
+				display: block;
+				width: 0;
+				height: 10px;
+				background-color: red;
+				position: fixed;
+				top: 0;
+				left: 0;
+			}
+			.input-field {
+				width: fit-content;
+				margin: 50px auto;
+			}
+			.input-field input {
+				border: none;
+				border-bottom: 1px solid #ddd;
+				padding: 7px 20px 7px 10px;
+				width: 250px;
+				font-size: 18px;
+				background-color: #F6F9FC;
+				border-radius: 5px 5px 0 0;
+			}
+			.input-field input:focus {
+				outline: none;
+			}
+			.input-field span.progress {
+				display: block;
+				width: 0;
+				height: 2px;
+				background-color: red;
+				transition: 0.5s;
+				position: relative;
+				top: -2px;
+				left: 0;
+			}
+			.input-field span.count {
+				display: block;
+				text-align: right;
+				margin-top: 6px;
+				font-size: 14px;
+			}
+			.zero {
+				font-weight: bold;
+				color: red;
+			}
+    </style>
+</head>
+<body>
+		<span class="scroll-progress"></span>
+
+    <div class="input-field">
+        <input type="text" maxlength="20" placeholder="Username">
+        <span class="progress"></span>
+        <span class="count"></span>
+    </div>
+
+		<script>
+			// Global variables
+			let progressBar = document.querySelector(".scroll-progress"),
+					userInput = document.querySelector("input[placeholder='Username']"),
+					maxLength = userInput.getAttribute("maxlength"),
+					countSpan = document.querySelector(".input-field span.count"),
+					progressSpan = document.querySelector(".input-field span.progress");
+
+			window.onscroll = function () {
+				let actualHeight = document.documentElement.offsetHeight - document.documentElement.clientHeight;
+				progressBar.style.width = `${Math.round((window.scrollY / actualHeight) * 100)}%`;
+				console.log(`${Math.round((window.scrollY / actualHeight) * 100)}%`);
+			}
+
+
+			// Set count span value based on the input maxlength attribute
+			countSpan.innerHTML = maxLength;
+
+			userInput.oninput = function () {
+				// Update count span value
+				countSpan.innerHTML = maxLength - this.value.length;
+
+				// Update the progress bar span
+				progressSpan.style.width = `${this.value.length * 100 / maxLength}%`;
+
+				// Check if the maxlength is reached
+				countSpan.innerHTML == 0 ? countSpan.classList.add("zero") : countSpan.classList.remove("zero");
+			}
+		</script>
+</body>
+</html>
